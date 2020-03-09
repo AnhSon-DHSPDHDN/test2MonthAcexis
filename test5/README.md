@@ -25,7 +25,7 @@
 5. Người dùng đã đăng nhập thành công sẽ không thể truy cập route /login, thay vào đó sẽ được chuyển hướng về /dashboard.
 6. Người dùng sau khi đăng nhập thành công có thể refresh trình duyệt và khi truy cập tới route mặc định _/_ và tự động được chuyển tới _/dashboard_
 7. Người dùng chuyển tới các route qua lại sẽ không reload lại trang (chỉ render component khác chứ không sử dụng location api của window object) (là 1 thuộc tính của SPA)
-8. Người dùng khi chuyển hướng tới protected route /functions thì hiển thị nội dung text: Functions
+8. Người dùng khi chuyển hướng tới protected route /functions thì hiển thị nội dung text: Functions page
 9. Người dùng khi chuyển hướng tới protected route /functions/foo thì sẽ hiển thì nội dung text: Function Foo
 10. Người dùng khi chuyển hướng đến protected route /setting thì không hiển thị section (truyền được URL query). Ví dụ _/setting?section=general_ thì sẽ hiển thị nội dung: _Setting page - Section: general_
 11. User bấm đăng xuất với selector _button[data-test=logout__btn]_ sẽ trở về trang đăng nhập.
