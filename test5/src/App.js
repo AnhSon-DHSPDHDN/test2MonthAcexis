@@ -1,13 +1,10 @@
-import React from 'react'
+import React,{Suspense, lazy} from 'react'
 import routes from './config/routes'
-
-const ExampleComponent = () => {
-  return (
-    <div>
-      Example Component
-      </div>
-  )
-}
+import { BrowserRouter as Router,Route,Switch,Redirect } from 'react-router-dom'
+//import Login from './pages/Login';
+//import Menu from './components/Menu'
+const Menu=lazy(()=>import('./components/Menu'));
+const PageNotFound=lazy(()=>import('./components/Pagenotfound'))
 
 function App () {
   return (
@@ -16,10 +13,22 @@ function App () {
           file routes config (khi thêm bớt component thì chỉ sửa file config)
           không cần sửa code tại đây
       */}
-      {
-        routes.map((config) => {
-          return <ExampleComponent />
-        })
+      { 
+        <Router>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Menu/>
+            <Switch>
+              {routes.map((config, index)=>{
+                return(
+                  <Route key={index} path={config.path} exact={config.exact} component={config.component}/>
+                )
+              })}
+              <Redirect exact from="/" to="/login"/>
+              <Route path='/*' component={PageNotFound}/>
+              
+            </Switch>
+          </Suspense>
+        </Router>
       }
     </div>
   )

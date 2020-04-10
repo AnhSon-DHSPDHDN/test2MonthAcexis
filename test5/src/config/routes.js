@@ -1,34 +1,41 @@
 // isProtected: các route cần được bảo vệ
 // Có thể thêm giá trị vào đây
+import  {lazy} from 'react'
+
 export default [
   {
     title: 'Login Page | Sample App',
-    component: 'Login',
+    component: lazy(() => import('../pages/Login')),
     path: '/login',
-    isProtected: false
+    isProtected: false,
+    exact: false
   },
   {
     title: 'Dashboard | Sample App',
-    component: 'Dashboard',
+    component: lazy(()=>import('../pages/Dashboard')),
     path: '/dashboard',
-    isProtected: true
+    isProtected: true,
+    exact: false
   },
   {
     title: 'Setting | Sample App',
-    component: 'Setting',
+    component: lazy(()=>import('../pages/Setting')),
     path: '/setting',
-    isProtected: true
+    isProtected: true,
+    exact: false
   },
   {
     title: 'Functions',
-    component: 'Functions',
+    component: lazy(()=>import('../pages/Functions')),
     path: '/functions',
     isProtected: true,
+    exact: true
   },
   {
     title: 'Functions',
-    component: 'FunctionFoo',
+    component: lazy(()=>import('../pages/FunctionFoo')),
     path: '/functions/foo',
-    isProtected: true
+    isProtected: true,
+    exact: false
   }
 ]
