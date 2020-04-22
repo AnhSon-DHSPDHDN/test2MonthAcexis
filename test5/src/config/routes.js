@@ -12,28 +12,28 @@ export default [
   },
   {
     title: 'Dashboard | Sample App',
-    component: lazy(()=>import('../pages/Dashboard')),
+    component: lazy(() => import('../pages/Dashboard')),
     path: '/dashboard',
     isProtected: true,
     exact: false
   },
   {
     title: 'Setting | Sample App',
-    component: lazy(()=>import('../pages/Setting')),
+    component: lazy(() => import('../pages/Setting')),
     path: '/setting',
     isProtected: true,
     exact: false
   },
   {
     title: 'Functions',
-    component: lazy(()=>import('../pages/Functions')),
+    component: lazy(() => import('../pages/Functions')),
     path: '/functions',
     isProtected: true,
     exact: true
   },
   {
     title: 'Functions',
-    component: lazy(()=>import('../pages/FunctionFoo')),
+    component: lazy(() => import('../pages/FunctionFoo')),
     path: '/functions/foo',
     isProtected: true,
     exact: false

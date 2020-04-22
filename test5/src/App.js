@@ -1,10 +1,8 @@
-import React,{Suspense, lazy} from 'react'
+import React, {Suspense, lazy} from 'react'
 import routes from './config/routes'
-import { BrowserRouter as Router,Route,Switch,Redirect } from 'react-router-dom'
-//import Login from './pages/Login';
-//import Menu from './components/Menu'
-const Menu=lazy(()=>import('./components/Menu'));
-const PageNotFound=lazy(()=>import('./components/Pagenotfound'))
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+const Menu = lazy(() => import('./components/Menu'));
+const PageNotFound = lazy(() => import('./components/Pagenotfound'));
 
 function App () {
   return (
@@ -15,17 +13,22 @@ function App () {
       */}
       { 
         <Router>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback = {<div>Loading...</div>}>
             <Menu/>
             <Switch>
-              {routes.map((config, index)=>{
-                return(
-                  <Route key={index} path={config.path} exact={config.exact} component={config.component}/>
-                )
-              })}
-              <Redirect exact from="/" to="/login"/>
-              <Route path='/*' component={PageNotFound}/>
-              
+              {
+                routes.map((config, index) => {
+                  return(
+                    <Route key = {index} 
+                           path = {config.path} 
+                           exact = {config.exact} 
+                           component = {config.component}
+                    />
+                  )
+                })
+              }
+              <Redirect exact from = "/" to = "/login"/>
+              <Route path = '/*' component = {PageNotFound}/>
             </Switch>
           </Suspense>
         </Router>

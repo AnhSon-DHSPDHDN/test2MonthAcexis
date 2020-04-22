@@ -4,20 +4,20 @@ import {Redirect} from 'react-router-dom'
 class Login extends Component {
   constructor(props){
     super(props);
-    this.state={
+    this.state = {
       password:''
     }
   }
-  onLogin=(e)=>{
+  onLogin = (e) => {
     e.preventDefault()
-    let password=document.querySelector('.pass').value;
-    if(password==='123'){
-      localStorage.setItem('token','123');
+    let password = document.querySelector('.pass').value;
+    if( password === '123' ){
+      localStorage.setItem('token', password);
       this.setState({
-        password:'123'
+        password: '123'
       })
     }
-    document.querySelector('.pass').value='';
+    document.querySelector('.pass').value = '';
   }
   render(){
     if(localStorage.getItem('token')){

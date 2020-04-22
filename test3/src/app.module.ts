@@ -5,37 +5,38 @@ import { ConfigModule } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { MessageModule } from './message/message.module';
+import * as jwt from 'jsonwebtoken';
+
 @Module({
   imports: [ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
-      definitions:{
+      definitions: {
         path: join(process.cwd(), 'src/graphql.ts')
       },
-      context: ({ req,res,connection }) => { 
+      context: ({ req, res, connection }) => { 
         if(connection){
-          return{
+          return {
             req: connection.context
           }
         }
-        return{
+        return {
           req,res
         }
-       },
+      },
       installSubscriptionHandlers:true,
-      subscriptions:{
-        onConnect: (connectionParams,ws)=>{
-          const jwt=require('jsonwebtoken')
-          let header=Object.assign(connectionParams)
-          if(header.Authorization==undefined)return false;
-          let token=header.Authorization.split(' ')[1];
-          let check;
+      subscriptions: {
+        onConnect: (connectionParams , ws) => {
+          let header = Object.assign(connectionParams)
+          if( header.Authorization === undefined ) return false;
+          let token = header.Authorization.split(' ')[1];
+          let check = null;
           if(token){
-            jwt.verify(token,'sup3rs3cr3t',(err,decode)=>{
+            jwt.verify(token, 'sup3rs3cr3t', (err,decode) => {
               if(err){
-                check=false;
+                check = false;
               }else{
-                check=decode;
+                check = decode;
               }
             });
             return check;

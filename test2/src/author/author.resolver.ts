@@ -1,24 +1,29 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { 
+    Resolver, 
+    Query, 
+    Mutation, 
+    Args 
+} from '@nestjs/graphql';
 import { AuthorService } from './author.service';
 import {Author} from './author.input';
+import * as uuidv4 from 'uuidv4';
 
 @Resolver('Author')
 export class AuthorResolver {
-    constructor(private readonly authorService:AuthorService){}
+    constructor(private readonly authorService : AuthorService){}
     @Query('authors')
     getAllAuthor(){
         return this.authorService.getAllAuthor();
     }
     @Query('author')
-    getAuthorByID(@Args('authorID') authorID:String){
+    getAuthorByID(@Args('authorID') authorID : String){
         return this.authorService.getAuthorByID(authorID);
     }
     @Mutation()
-    async createAuthor(@Args('author') author:Author){
-        let {firstName,lastName,dob}=author;
-        let number=Math.random();
-        let id=number.toString(36).substr(2,9);
-        this.authorService.postAuthor({id,firstName,lastName,dob});
-        return {id,firstName,lastName,dob};
+    async createAuthor(@Args('author') author : Author){
+        let id = await uuidv4.uuid();
+        let newAuthor = Object.assign( {id}, author )
+        this.authorService.postAuthor(newAuthor);
+        return newAuthor;
     }
 }
