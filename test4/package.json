@@ -22,7 +22,7 @@
     "@nestjs/core": "^6.7.2",
     "@nestjs/platform-express": "^6.11.11",
     "file-signature": "^1.0.0",
-    "file-type": "^14.1.4",
+    "file-type": "^16.5.4",
     "image-type": "^4.1.0",
     "mime-types": "^2.1.26",
     "multer": "^1.4.2",
