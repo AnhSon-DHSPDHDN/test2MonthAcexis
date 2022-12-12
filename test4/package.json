@@ -20,7 +20,7 @@
     "@nestjs/common": "^6.7.2",
     "@nestjs/config": "0.0.9",
     "@nestjs/core": "^6.7.2",
-    "@nestjs/platform-express": "^6.11.11",
+    "@nestjs/platform-express": "^9.2.1",
     "file-signature": "^1.0.0",
     "file-type": "^14.1.4",
     "image-type": "^4.1.0",
